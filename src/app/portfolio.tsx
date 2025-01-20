@@ -10,6 +10,10 @@ import {
   Mail,
   Menu,
   X,
+  CheckCircle2,
+  Award,
+  Layers,
+  Cpu
 } from "lucide-react";
 
 interface OrbitPosition {
@@ -38,6 +42,13 @@ const Portfolio = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToHero = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -182,6 +193,7 @@ const Portfolio = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-xl font-bold text-white"
+              onClick={scrollToHero}
             >
               GRS
             </motion.h1>
@@ -334,15 +346,27 @@ const Portfolio = () => {
               >
                 <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl" />
 
-                {/* Main Image */}
-                <div className="relative z-10 w-64 sm:w-80 lg:w-auto aspect-square rounded-full overflow-hidden border-4 border-white/10">
-                  <img
-                    src={`${basePath}/IMG_3841 (1).png`}
-                    alt="Ghazi Rahman Shaik"
-                    className="object-cover w-full h-full"
-                  />
+                {/* Flipping Card Container */}
+                <div className="relative z-10 max-w-96 w-64 sm:w-96 lg:w-96 aspect-square [perspective:1000px] group">
+                  <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                    {/* Front Face */}
+                    <div className="absolute w-full h-full rounded-full overflow-hidden border-4 border-white/10 [backface-visibility:hidden]">
+                      <img
+                        src={`${basePath}/IMG_3841 (1).png`}
+                        alt="Ghazi Rahman Shaik"
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                    {/* Back Face */}
+                    <div className="absolute w-full h-full rounded-full overflow-hidden border-4 border-white/10 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                      <img
+                        src={`${basePath}/aime.png`}
+                        alt="Alternate Profile"
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  </div>
                 </div>
-
                 {/* Decorative Rings */}
                 <motion.div
                   animate={{ rotate: 360 }}
@@ -738,7 +762,7 @@ const Portfolio = () => {
             </div>
             <div className="flex flex-col md:flex-row items-center gap-4">
               <span className="text-sm text-gray-500">
-                © 2024 Ghazi Rahman Shaik. All rights reserved.
+                © 2025 Ghazi Rahman Shaik.
               </span>
               <span className="hidden md:block text-gray-500">|</span>
               <span className="text-sm text-gray-500">Los Angeles, CA</span>
