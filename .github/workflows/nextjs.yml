@@ -26,10 +26,6 @@ jobs:
       - name: Build the project
         run: npm run build
 
-      - name: Export static files
-        run: npm run export
-        # Ensure the export command generates the files in the 'out' directory
-
   deploy:
     environment:
       name: github-pages
