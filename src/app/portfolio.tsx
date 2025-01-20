@@ -446,7 +446,7 @@ const Portfolio = () => {
                         className="w-24 h-24 rounded-xl overflow-hidden bg-white shadow-lg ring-4 ring-white"
                       >
                         <img
-                          src={job.logo}
+                          src={`${basePath}${job.logo}`}
                           alt={`${job.company} logo`}
                           className="w-full h-full object-contain p-2"
                         />
