@@ -48,7 +48,7 @@ const Portfolio = () => {
         "Unified platform integrating prescriber data for 9000+ Walgreens locations",
       category: "Professional Work",
       technologies: "AWS, Kafka, Airflow, Snowflake",
-      image: "/Screenshot 2025-01-19 at 5.48.43 AM.png",
+      image: "/Screenshot 2025-01-19 at 5.48.43 AM.png",
     },
     {
       title: "IoT Anomaly Detection System",
@@ -56,7 +56,7 @@ const Portfolio = () => {
         "Real-time system for equipment failure prediction and maintenance",
       category: "Innovation",
       technologies: "Apache Kafka, Flink, TensorFlow, AWS Lambda",
-      image: "/Screenshot 2025-01-19 at 5.48.20 AM.png",
+      image: "/Screenshot 2025-01-19 at 5.48.20 AM.png",
     },
   ];
 
