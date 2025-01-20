@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -181,12 +180,10 @@ const Portfolio = () => {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/95 to-slate-900/90" />
           <div className="absolute right-0 top-0 h-screen w-1/2">
-            <Image
+            <img
               src="/IMG_3841 (1).png"
               alt="Ghazi Rahman Shaik"
-              fill
-              className="object-cover opacity-80"
-              priority
+              className="object-cover w-full h-full opacity-80"
             />
           </div>
         </div>
@@ -269,11 +266,10 @@ const Portfolio = () => {
                 <div className="grid md:grid-cols-[1fr_2fr] gap-8">
                   <div className="relative">
                     <div className="mb-6 w-28 h-28 relative rounded-lg overflow-hidden bg-white shadow-md">
-                      <Image
+                      <img
                         src={job.logo}
                         alt={`${job.company} logo`}
-                        fill
-                        className="object-contain p-2"
+                        className="object-contain p-2 w-full h-full"
                       />
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900 mb-2">
@@ -355,11 +351,10 @@ const Portfolio = () => {
                     }`}
                   >
                     <div className="relative aspect-video rounded-lg overflow-hidden bg-slate-800">
-                      <Image
+                      <img
                         src={`${basePath}${project.image}`}
                         alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
                       />
                     </div>
                   </div>
