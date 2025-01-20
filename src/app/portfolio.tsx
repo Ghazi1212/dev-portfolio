@@ -132,8 +132,8 @@ const Portfolio = () => {
       category: "Data Engineering",
       items: [
         { name: "PySpark", icon: "/pyspark.png" },
-        { name: "Airflow", icon: "/apache airflow.png" },
-        { name: "Kafka", icon: "/apache kafka.png" },
+        { name: "Airflow", icon: "/Apache Airflow.png" },
+        { name: "Kafka", icon: "/Apache Kafka.png" },
         { name: "Snowflake", icon: "/snowflake.png" },
       ],
     },
@@ -141,7 +141,7 @@ const Portfolio = () => {
       category: "Web Development",
       items: [
         { name: "React", icon: "/React.png" },
-        { name: "Golang", icon: "/go.png" },
+        { name: "Golang", icon: "/Go.png" },
         { name: "PostgreSQL", icon: "/PostgresSQL.png" },
       ],
     },
@@ -149,7 +149,7 @@ const Portfolio = () => {
       category: "Machine Learning",
       items: [
         { name: "Hugging Face", icon: "/huggingface.png" },
-        { name: "TensorFlow", icon: "/tensorflow.png" },
+        { name: "TensorFlow", icon: "/TensorFlow.png" },
       ],
     },
   ];
