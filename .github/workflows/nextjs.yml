@@ -30,6 +30,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Verify next.config.js
+        run: |
+          if [ ! -f "next.config.js" ]; then
+            echo "Error: next.config.js not found"
+            exit 1
+          fi
+
       - name: Clean install dependencies
         run: |
           rm -rf node_modules package-lock.json
@@ -49,11 +56,14 @@ jobs:
           npm run build
         env:
           CI: false
+          NEXT_PUBLIC_BASE_PATH: ${{ github.event.repository.name }}
 
       - name: Copy public assets
         run: |
           mkdir -p out
-          cp -r public/* out/ || true
+          if [ -d "public" ]; then
+            cp -r public/* out/ || true
+          fi
           
       - name: Fix permissions
         run: |
