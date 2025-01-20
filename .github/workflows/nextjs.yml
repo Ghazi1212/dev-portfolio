@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write  # Add this line to grant the necessary permissions
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -27,6 +27,12 @@ jobs:
       - name: Build the project
         run: npm run build
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: out  # Adjust the path to match your build output
+
   deploy:
     environment:
       name: github-pages
@@ -35,7 +41,7 @@ jobs:
     needs: build
     permissions:
       contents: write
-      id-token: write  # Ensure that this permission is set here as well
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -44,4 +50,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          folder: out  # Specify the 'out' folder for static files
+          folder: out  # Ensure it uses the correct 'out' folder for static files
