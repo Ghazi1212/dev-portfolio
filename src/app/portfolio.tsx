@@ -12,9 +12,24 @@ import {
   X,
 } from "lucide-react";
 
+interface OrbitPosition {
+  left: string;
+  top: string;
+}
+
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const [orbitPositions, setOrbitPositions] = useState<OrbitPosition[]>([]);
+
+  useEffect(() => {
+    const positions: OrbitPosition[] = [...Array(6)].map((_, i) => ({
+      left: `${50 + Math.round(45 * Math.cos((2 * Math.PI * i) / 6))}%`,
+      top: `${50 + Math.round(45 * Math.sin((2 * Math.PI * i) / 6))}%`,
+    }));
+    setOrbitPositions(positions);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,6 +91,9 @@ const Portfolio = () => {
         "Optimized data processing to handle millions of records with a 40% reduction in runtime.",
         "Used AWS, Snowflake, and PySpark for efficient ETL operations.",
       ],
+      technologies: ["AWS", "Snowflake", "PySpark", "Airflow", "Kafka"],
+      achievements:
+        "40% reduction in processing time | 99.9% pipeline reliability",
     },
     {
       title: "Data Analyst Intern",
@@ -88,6 +106,8 @@ const Portfolio = () => {
         "Developed dashboards for real-time insights using Power BI.",
         "Performed data cleaning and preprocessing to ensure data accuracy.",
       ],
+      technologies: ["Power BI", "Python", "SQL", "Excel"],
+      achievements: "15% improvement in operational efficiency",
     },
   ];
 
@@ -210,53 +230,162 @@ const Portfolio = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center bg-slate-900">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/95 to-slate-900/90" />
-          <div className="absolute right-0 top-0 h-screen w-1/2">
-            <img
-              src={`${basePath}/IMG_3841 (1).png`}
-              alt="Ghazi Rahman Shaik"
-              className="object-cover w-full h-full opacity-80"
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950">
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 overflow-hidden opacity-20">
+          <div className="absolute w-full h-full">
+            <motion.div
+              initial={{ rotate: 0 }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+              className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,_#1e40af_1px,_transparent_1px)] bg-[length:24px_24px]"
             />
           </div>
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-                Ghazi Rahman Shaik
-              </h1>
-              <h2 className="text-3xl md:text-4xl font-light text-blue-400 mb-8">
-                Data Engineer
-              </h2>
-              <p className="text-xl text-slate-300 mb-12 max-w-2xl">
-                Specializing in high-throughput architectures with proven 60%
-                cost reduction. Building fault-tolerant pipelines processing 1M+
-                events/second using AWS/Azure.
-              </p>
-              <div className="flex gap-6 flex-wrap">
-                <Link
-                  href="#work"
-                  className="group bg-blue-500 text-white px-8 py-4 rounded-full flex items-center gap-2 hover:bg-blue-600 transition-colors"
+        {/* Content Container */}
+        <div className="relative z-10 container mx-auto px-4 min-h-screen pb-20">
+          <div className="min-h-screen grid lg:grid-cols-2 items-center gap-8 lg:gap-16">
+            {/* Left Column - Text Content */}
+            <div className="text-center lg:text-left order-2 lg:order-1 pt-24 lg:pt-0">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="space-y-6"
+              >
+                {/* Name Tag */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="inline-block"
                 >
-                  View Projects
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  href="#contact"
-                  className="px-8 py-4 rounded-full border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white transition-colors"
-                >
-                  Contact Me
-                </Link>
-              </div>
-            </motion.div>
+                  <div className="px-4 py-1 bg-blue-500/10 text-blue-400 rounded-full text-sm font-medium tracking-wide mb-4 border border-blue-500/20">
+                    DATA ENGINEER
+                  </div>
+                </motion.div>
+
+                {/* Main Heading */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+                  <span className="block">Ghazi Rahman</span>
+                  <span className="block mt-2 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                    Shaik
+                  </span>
+                </h1>
+
+                {/* Description */}
+                <p className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0">
+                  Building high-performance data pipelines and scalable
+                  architectures. Specializing in real-time processing systems
+                  with
+                  <span className="text-blue-400"> 1M+ events/second</span> and
+                  <span className="text-blue-400"> 60% cost optimization</span>.
+                </p>
+
+                {/* Stats Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 my-8">
+                  {[
+                    { label: "Experience", value: "3+ Years" },
+                    { label: "Projects", value: "15+" },
+                    { label: "Technologies", value: "12+" },
+                  ].map((stat, index) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 + index * 0.1 }}
+                      className="p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"
+                    >
+                      <div className="text-2xl font-bold text-white">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-slate-400">{stat.label}</div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-16 sm:mb-24">
+                  <Link
+                    href="#work"
+                    className="group bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-blue-500/25"
+                  >
+                    Explore Work
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                  <Link
+                    href="#contact"
+                    className="group px-8 py-4 rounded-xl border border-white/20 hover:border-white/40 text-white flex items-center justify-center gap-2 transition-all duration-300 hover:bg-white/5"
+                  >
+                    Get in Touch
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Image & Decorative Elements */}
+            <div className="relative order-1 lg:order-2 flex justify-center mt-20 sm:mt-24 lg:mt-0">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="relative"
+              >
+                <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl" />
+
+                {/* Main Image */}
+                <div className="relative z-10 w-64 sm:w-80 lg:w-auto aspect-square rounded-full overflow-hidden border-4 border-white/10">
+                  <img
+                    src={`${basePath}/IMG_3841 (1).png`}
+                    alt="Ghazi Rahman Shaik"
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+
+                {/* Decorative Rings */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute inset-0 border-4 border-dashed border-blue-500/20 rounded-full"
+                />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{
+                    duration: 40,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute -inset-8 border-4 border-dashed border-blue-500/10 rounded-full"
+                />
+
+                {/* Tech Icons Orbit */}
+                <div className="hidden lg:block">
+                  {orbitPositions.map((position, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-12 h-12 rounded-full bg-white/5 backdrop-blur-sm flex items-center justify-center"
+                      style={position}
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: i * 0.5,
+                      }}
+                    >
+                      <div className="w-6 h-6 text-blue-400" />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
 
@@ -264,7 +393,12 @@ const Portfolio = () => {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 cursor-pointer hover:text-white/80 transition-colors"
+          onClick={() =>
+            document
+              .getElementById("work")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
         >
           <ChevronDown className="w-6 h-6" />
         </motion.div>
@@ -275,58 +409,124 @@ const Portfolio = () => {
         id="work"
         className="py-32 bg-gradient-to-b from-slate-100 to-white"
       >
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16"
+            className="mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Experience
+            <h2 className="text-5xl font-bold text-slate-900 mb-4">
+              Professional Journey
             </h2>
             <div className="h-1 w-20 bg-blue-500" />
           </motion.div>
 
-          <div className="space-y-20">
+          <div className="space-y-24">
             {experience.map((job, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="relative"
+                className="group"
               >
-                <div className="grid md:grid-cols-[1fr_2fr] gap-8">
-                  <div className="relative">
-                    <div className="mb-6 w-28 h-28 relative rounded-lg overflow-hidden bg-white shadow-md">
-                      <img
-                        src={`${basePath}${job.logo}`}
-                        alt={`${job.company} logo`}
-                        className="object-contain p-2 w-full h-full"
-                      />
+                <div className="relative">
+                  {/* Timeline connector */}
+                  {index !== experience.length - 1 && (
+                    <div className="absolute left-[45px] top-28 w-0.5 h-24 bg-gradient-to-b from-blue-500 to-transparent" />
+                  )}
+
+                  <div className="grid lg:grid-cols-[100px_1fr] gap-8">
+                    {/* Timeline and logo */}
+                    <div className="relative">
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        className="w-24 h-24 rounded-xl overflow-hidden bg-white shadow-lg ring-4 ring-white"
+                      >
+                        <img
+                          src={job.logo}
+                          alt={`${job.company} logo`}
+                          className="w-full h-full object-contain p-2"
+                        />
+                      </motion.div>
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                      {job.title}
-                    </h3>
-                    <p className="text-blue-600 font-medium">{job.company}</p>
-                    <p className="text-slate-600">{job.location}</p>
-                    <p className="text-slate-500">{job.period}</p>
-                  </div>
-                  <div>
-                    {job.project && (
-                      <h4 className="text-xl font-semibold text-slate-800 mb-4">
-                        {job.project}
-                      </h4>
-                    )}
-                    <ul className="space-y-4 text-slate-600">
-                      {job.details.map((detail, idx) => (
-                        <li key={idx} className="flex gap-3">
-                          <span className="text-blue-500">•</span>
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
+
+                    {/* Content */}
+                    <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                      <div className="grid lg:grid-cols-[2fr_1fr] gap-8">
+                        {/* Left column */}
+                        <div>
+                          <div className="flex flex-wrap items-baseline gap-3 mb-4">
+                            <h3 className="text-2xl font-bold text-slate-900">
+                              {job.title}
+                            </h3>
+                            <span className="text-blue-600 font-semibold">
+                              {job.company}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-4 text-slate-600 mb-6">
+                            <span>{job.location}</span>
+                            <span className="w-1 h-1 rounded-full bg-slate-400" />
+                            <span>{job.period}</span>
+                          </div>
+
+                          {job.project && (
+                            <div className="mb-6">
+                              <h4 className="text-lg font-semibold text-slate-800 mb-2">
+                                Key Project
+                              </h4>
+                              <p className="text-blue-600">{job.project}</p>
+                            </div>
+                          )}
+
+                          <div className="space-y-3">
+                            {job.details.map((detail, idx) => (
+                              <div key={idx} className="flex gap-3 items-start">
+                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                                <p className="text-slate-700">{detail}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Right column */}
+                        <div className="space-y-6">
+                          {job.technologies && (
+                            <div>
+                              <h4 className="text-sm font-semibold text-slate-500 mb-3 uppercase tracking-wider">
+                                Technologies
+                              </h4>
+                              <div className="flex flex-wrap gap-2">
+                                {job.technologies.map((tech, idx) => (
+                                  <span
+                                    key={idx}
+                                    className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm"
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {job.achievements && (
+                            <div>
+                              <h4 className="text-sm font-semibold text-slate-500 mb-3 uppercase tracking-wider">
+                                Key Achievements
+                              </h4>
+                              <div className="p-4 bg-green-50 rounded-lg">
+                                <p className="text-green-700 text-sm">
+                                  {job.achievements}
+                                </p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -438,7 +638,7 @@ const Portfolio = () => {
               viewport={{ once: true }}
               className="space-y-12 overflow-hidden"
             >
-              {skills.map((skill, index) => (
+              {skills.map((skill) => (
                 <div key={skill.category} className="relative">
                   <div className="flex items-center gap-4 mb-4">
                     <h3 className="text-xl font-semibold text-white">
@@ -452,7 +652,6 @@ const Portfolio = () => {
                       variants={slideAnimation}
                       animate="animate"
                     >
-                      {/* Double the items to create seamless loop */}
                       {[...skill.items, ...skill.items].map(
                         (item, itemIndex) => (
                           <div
