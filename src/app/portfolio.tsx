@@ -181,7 +181,7 @@ const Portfolio = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/95 to-slate-900/90" />
           <div className="absolute right-0 top-0 h-screen w-1/2">
             <img
-              src="/IMG_3841 (1).png"
+              src={`${basePath}/IMG_3841 (1).png`}
               alt="Ghazi Rahman Shaik"
               className="object-cover w-full h-full opacity-80"
             />
@@ -267,7 +267,7 @@ const Portfolio = () => {
                   <div className="relative">
                     <div className="mb-6 w-28 h-28 relative rounded-lg overflow-hidden bg-white shadow-md">
                       <img
-                        src={job.logo}
+                        src={`${basePath}${job.logo}`}
                         alt={`${job.company} logo`}
                         className="object-contain p-2 w-full h-full"
                       />
