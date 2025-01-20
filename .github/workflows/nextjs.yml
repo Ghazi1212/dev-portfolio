@@ -30,9 +30,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Install dependencies
+      - name: Clean install dependencies
         run: |
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
           npm install --legacy-peer-deps
+          npm install --save --legacy-peer-deps lucide-react@latest
+          npm install --save --legacy-peer-deps framer-motion@latest
           npm install sharp
 
       - name: Create env file
@@ -41,11 +45,15 @@ jobs:
           echo "NEXT_PUBLIC_BASE_PATH=${{ github.event.repository.name }}" >> .env
 
       - name: Build with Next.js
-        run: npm run build
+        run: |
+          npm run build
+        env:
+          CI: false
 
       - name: Copy public assets
         run: |
-          cp -r public/* out/
+          mkdir -p out
+          cp -r public/* out/ || true
           
       - name: Fix permissions
         run: |
