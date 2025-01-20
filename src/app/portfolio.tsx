@@ -63,8 +63,6 @@ const Portfolio = () => {
     },
   ];
 
-  
-
   const experience = [
     {
       title: "Data Engineer",
@@ -100,14 +98,14 @@ const Portfolio = () => {
         { name: "Python", icon: "/Python.png" },
         { name: "Java", icon: "/Java.png" },
         { name: "JavaScript", icon: "/JavaScript.png" },
-        { name: "Go", icon: "/go.png" }
+        { name: "Go", icon: "/go.png" },
       ],
     },
     {
       category: "Cloud Platforms",
       items: [
         { name: "AWS", icon: "/AWS.png" },
-        { name: "Azure", icon: "/Azure.png" }
+        { name: "Azure", icon: "/Azure.png" },
       ],
     },
     {
@@ -116,7 +114,7 @@ const Portfolio = () => {
         { name: "PySpark", icon: "/pyspark.png" },
         { name: "Airflow", icon: "/apache airflow.png" },
         { name: "Kafka", icon: "/apache kafka.png" },
-        { name: "Snowflake", icon: "/snowflake.png" }
+        { name: "Snowflake", icon: "/snowflake.png" },
       ],
     },
     {
@@ -124,14 +122,14 @@ const Portfolio = () => {
       items: [
         { name: "React", icon: "/React.png" },
         { name: "Golang", icon: "/go.png" },
-        { name: "PostgreSQL", icon: "/PostgresSQL.png" }
+        { name: "PostgreSQL", icon: "/PostgresSQL.png" },
       ],
     },
     {
       category: "Machine Learning",
       items: [
         { name: "Hugging Face", icon: "/huggingface.png" },
-        { name: "TensorFlow", icon: "/tensorflow.png" }
+        { name: "TensorFlow", icon: "/tensorflow.png" },
       ],
     },
   ];
@@ -402,78 +400,84 @@ const Portfolio = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-32 bg-gradient-to-b from-blue-900 to-slate-900">
-      <div className="max-w-8xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-wide">
-            Technical Skills
-          </h2>
-          <div className="h-1 w-20 bg-blue-500" />
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+      <section
+        id="skills"
+        className="py-32 bg-gradient-to-b from-blue-900 to-slate-900"
+      >
+        <div className="max-w-8xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-6 text-center md:text-left"
+            className="mb-16"
           >
-            <p className="text-xl text-slate-300 max-w-xl mx-auto md:mx-0">
-              With expertise in data engineering and cloud technologies, I specialize in building 
-              scalable data platforms and real-time processing systems that drive business value 
-              while ensuring optimal performance and compliance.
-            </p>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-wide">
+              Technical Skills
+            </h2>
+            <div className="h-1 w-20 bg-blue-500" />
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="space-y-12 overflow-hidden"
-          >
-            {skills.map((skill, index) => (
-              <div key={skill.category} className="relative">
-                <div className="flex items-center gap-4 mb-4">
-                  <h3 className="text-xl font-semibold text-white">
-                    {skill.category}
-                  </h3>
-                </div>
-                
-                <div className="overflow-hidden relative">
-                  <motion.div 
-                    className="flex gap-4 whitespace-nowrap"
-                    variants={slideAnimation}
-                    animate="animate"
-                  >
-                    {/* Double the items to create seamless loop */}
-                    {[...skill.items, ...skill.items].map((item, itemIndex) => (
-                      <div
-                        key={`${item.name}-${itemIndex}`}
-                        className="px-11 py-3 bg-slate-300 rounded-full text-black text-sm 
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6 text-center md:text-left"
+            >
+              <p className="text-xl text-slate-300 max-w-xl mx-auto md:mx-0">
+                With expertise in data engineering and cloud technologies, I
+                specialize in building scalable data platforms and real-time
+                processing systems that drive business value while ensuring
+                optimal performance and compliance.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="space-y-12 overflow-hidden"
+            >
+              {skills.map((skill, index) => (
+                <div key={skill.category} className="relative">
+                  <div className="flex items-center gap-4 mb-4">
+                    <h3 className="text-xl font-semibold text-white">
+                      {skill.category}
+                    </h3>
+                  </div>
+
+                  <div className="overflow-hidden relative">
+                    <motion.div
+                      className="flex gap-4 whitespace-nowrap"
+                      variants={slideAnimation}
+                      animate="animate"
+                    >
+                      {/* Double the items to create seamless loop */}
+                      {[...skill.items, ...skill.items].map(
+                        (item, itemIndex) => (
+                          <div
+                            key={`${item.name}-${itemIndex}`}
+                            className="px-11 py-3 bg-slate-300 rounded-full text-black text-sm 
                                  border border-blue-700/50 transform hover:scale-105 hover:bg-blue-800
                                  transition-all duration-300 ease-in-out inline-flex items-center gap-2"
-                      >
-                        <img 
-                          src={item.icon} 
-                          alt={`${item.name} icon`}
-                          className="w-9 h-9 object-contain"
-                        />
-                        {item.name}
-                      </div>
-                    ))}
-                  </motion.div>
+                          >
+                            <img
+                              src={`${basePath}${item.icon}`}
+                              alt={`${item.name} icon`}
+                              className="w-9 h-9 object-contain"
+                            />
+                            {item.name}
+                          </div>
+                        )
+                      )}
+                    </motion.div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-32 bg-slate-900">
